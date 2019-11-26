@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+WIFI=$( ip addr | grep wlo1 | grep inet | awk '{print $2}' )
+ETH=$( ip addr | grep enp0s20f0u5u2u | grep inet | awk '{print $2}' )
+VPN=$( ip addr | grep tun0 | grep inet | awk '{print $2}' )
+
+#if [ ! -z $WIFI ]; then
+#    WIFI=${WIFI::-3}
+#    printf "  $WIFI"
+#fi
+#
+#if [ ! -z $ETH ]; then
+#    if [ ! -z $WIFI ]; then
+#        printf "        "
+#    fi
+#    ETH=${ETH::-3}
+#    printf "  $ETH"
+#fi
+#
+#if [ ! -z $VPN ]; then
+#    if [ ! -z $WIFI ]; then
+#        printf "        "
+#    fi
+#    VPN=${VPN::-3}
+#    printf " $VPN"
+#fi
+
+if [ ! -z $VPN ]; then
+    VPN=${VPN::-3}
+    printf " $VPN      "
+fi

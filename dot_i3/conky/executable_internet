@@ -1,0 +1,2 @@
+#!/bin/sh
+echo "  \${downspeed wlo1}    \${upspeed wlo1}      "

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+VOLUME=$(amixer get 'Master' -M | grep -oE "[[:digit:]]*%" | head -n 1)
+MUTE=$(amixer get 'Master' -M | grep -oE "\[off\]" | head -n 1)
+DOUBLESPACE='  '
+
+if [[ -n "$MUTE" ]] || [[ ${VOLUME::-1} -eq 0 ]]; then
+    echo 奄  "$VOLUME"
+else
+    echo 奄 "$VOLUME"
+fi
+

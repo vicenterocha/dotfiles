@@ -1,0 +1,24 @@
+#!/usr/env bash
+
+STATE=$( cmus-remote -Q 2>/dev/null | grep "status playing" )
+ARTIST=$( cmus-remote -Q 2>/dev/null | grep " artist" | cut -d " " -f 3- )
+TITLE=$( cmus-remote -Q 2>/dev/null | grep title | cut -d " " -f 3- )
+FILE=$( cmus-remote -Q | grep "file" | sed 's/.*\///' | sed 's/.mp3//' | sed 's/.m4a//' | sed 's/_/ /g' )
+RUNNING=$( cmus-remote -Q )
+
+TITLE="${TITLE//[$'\t\r\n']}"
+ARTIST="${ARTIST//[$'\t\r\n']}"
+
+if [ -z "$RUNNING" ]; then
+    echo ""
+elif [ -z "$STATE" ]; then
+	echo " Paused"
+elif [ -z "$ARTIST" ]; then
+    if [ -z "$FILE" ]; then
+	    echo ""
+	else
+        echo " $FILE"
+	fi
+else
+	echo " $ARTIST - $TITLE"
+fi

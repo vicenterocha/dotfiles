@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+ON=$( bluetoothctl info $TAB60_BL_ADDR | grep Connected | awk '{print $2}' )
+
+if [[ $ON == "yes"  ]]; then
+   echo " " 
+else
+   echo "" 
+fi
+

@@ -1,0 +1,11 @@
+ pacman -Qe | awk '{print (}' > package_list.txt')}'
+ for x in $(cat package_list.txt); do pacman -S $x; done
+
+Paths with credentials to add:
+    * ~/.aws
+    * 
+
+To check:
+    * backup recs
+    * /etc/environment
+    

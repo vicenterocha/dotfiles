@@ -1,0 +1,20 @@
+#!/bin/bash
+#set -o errexit -o pipefail -o nounset
+
+RUNNING=$( playerctl -p spotify status | grep -E "Playing|Paused|Stopped" )
+PLAYING=$( playerctl -p spotify status | grep -E "Playing" )
+PAUSED=$( playerctl -p spotify status | grep -E "Paused" )
+STOPPED=$( playerctl -p spotify status | grep -E "Stopped" )
+ARTIST=$( playerctl -p spotify metadata artist )
+TITLE=$( playerctl -p spotify metadata title )
+
+
+if [ -z "$RUNNING" ]; then
+    echo ""
+elif [ ! -z "$PAUSED" ]; then
+	echo " Paused"
+elif [ ! -z "$STOPPED" ]; then
+    echo ""
+else
+	echo " $ARTIST - $TITLE"
+fi

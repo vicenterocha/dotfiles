@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+i="0"
+
+while [ $i -lt 4 ]
+do
+    echo -ne "\r\033[K"
+	sleep 0.6
+    echo -ne "\r \033[K"
+	sleep 0.4
+    echo -ne "\r  \033[K"
+	sleep 0.35
+    echo -ne "\r   \033[K"
+	sleep 0.3
+    echo -ne "\r    \033[K"
+	sleep 0.2
+    echo -ne "\r     \033[K"
+	sleep 0.1
+    echo -ne "\r       \033[K"
+	sleep 0.1
+    echo -ne "\r        \033[K"
+	sleep 0.1
+    echo -ne "\r         \033[K"
+	sleep 0.1
+    echo -ne "\r          \033[K"
+	sleep 0.1
+    echo -ne "\r           \033[K"
+	sleep 0.1
+    echo -ne "\r             \033[K"
+	sleep 0.1
+    echo -ne "\r              \033[K"
+	sleep 0.1
+    echo -ne "\r               \033[K"
+	sleep 0.1
+    echo -ne "\r                \033[K"
+	sleep 0.1
+    echo -ne "\r                 \033[K"
+	sleep 0.1
+    echo -ne "\r                   \033[K"
+	sleep 0.1
+    echo -ne "\r                    \033[K"
+	sleep 0.1
+    echo -ne "\r                     \033[K"
+	sleep 0.1
+    echo -ne "\r                      \033[K"
+	sleep 0.1
+    echo -ne "\r                       \033[K"
+	sleep 0.1
+    echo -ne "\r                       \033[K"
+	sleep 0.1
+    echo -ne "\r                         \033[K"
+	i=$[$i+1]
+done
+
+exit 0

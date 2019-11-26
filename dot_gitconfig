@@ -1,0 +1,7 @@
+[user]
+	name = Vicente Rocha
+	email = vicente.c.rocha@gmail.com
+
+ [credential]
+    helper = !aws --profile caspian-dev codecommit credential-helper $@
+	UseHttpPath = true

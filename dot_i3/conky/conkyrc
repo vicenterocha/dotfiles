@@ -1,0 +1,26 @@
+conky.config = {
+    background=false,
+    out_to_x=false,
+    out_to_console=true,
+    update_interval=1,
+    total_run_times=0,
+    use_spacer=none,
+    double_buffer=true
+
+        --   ${uptime_short}         \
+}
+
+conky.text = [[
+    ${execi 2 ~/.i3/conky/spotify_info}    \
+ ${execi 2 ~/.i3/conky/internet_ip} |   \
+ ${color} ${fs_free}    \
+      ${mem}    \
+    ${execi 2 ~/.i3/conky/volume}   \
+      ${time %A %d}   \
+      ${time %H:%M}     | \
+  ${execi 2 ~/.i3/conky/mx2s_battery_info}\
+${execi 2 ~/.i3/conky/galaxy_buds_connection}\
+ ${execi 2 ~/.i3/conky/tab60_connection}\
+ ${execi 2 ~/.i3/my_scripts/bluetooth/read_bluetooth_status.py}   | \
+   ${execi 2 ~/.i3/conky/battery_info}  \
+]]

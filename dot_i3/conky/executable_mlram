@@ -1,0 +1,3 @@
+a=$(ssh -o LogLevel=QUIET -t ml free -m  | grep ^Mem | tr -s ' ' | cut -d ' ' -f 3 | awk ' {$1=$1/(1024); printf "%0.2f GB", $1;}')
+
+echo $a

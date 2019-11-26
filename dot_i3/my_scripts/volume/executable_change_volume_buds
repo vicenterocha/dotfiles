@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+
+VOLUME=$(amixer get 'Master' -M | grep -oE "[[:digit:]]*%" | head -n 1)
+VOLUME=${VOLUME::-1}
+ON=$(bluetoothctl info $BUDS_BL_ADDR | grep Connected | awk '{print $2}')
+echo current volume: $VOLUME
+
+# change equals volume + argument (either +5 or -5)
+change=$((VOLUME$1))
+echo initial change: $change
+
+if [[ $1 -gt 0 ]]; then
+	#if [[ $VOLUME -eq 100 ]]; then
+	#	echo "Max volume"
+    #    echo "exiting.."
+	#	exit 0
+    #elif [[ $((VOLUME $1)) -gt 100 ]]; then
+    #    change=100
+	#fi
+    echo "Validation disabled"
+elif [[ $1 -lt 0 ]]; then
+	if [[ $VOLUME -eq 0 ]]; then
+		echo "Lowest volume"
+        echo "exiting.."
+		exit 0
+	fi
+fi
+
+echo change after checking volume: $change
+
+# Detect sync so only its volume is changed (If buds are connected, control buds, else control computer audio)
+if [[ $ON == "yes" ]]; then
+	SYNC=bluez_sink.${BUDS_BL_ADDR//[:]/_}.a2dp_sink
+else
+	SYNC=alsa_output.pci-0000_00_1f.3.analog-stereo
+fi
+
+# Check if the command is to mute
+if [[ $change -eq 0 ]]; then
+	pactl set-sink-mute $SYNC toggle
+else
+    # Unmute if volume up command
+    if [[ $change -gt 0 ]]; then
+		pactl set-sink-mute $SYNC false
+    fi
+	# Change volume
+	pactl set-sink-volume $SYNC $change%
+fi
+
+VOLUME=$(amixer get 'Master' -M | grep -oE "[[:digit:]]*%" | head -n 1)
+VOLUME=${VOLUME::-1}
+MUTE=$(amixer get 'Master' -M | grep -oE "off" | head -n 1)
+echo $MUTE
+echo new volume: $VOLUME
+
+
+if [ "$VOLUME" = "0" ] || [ "$MUTE" == "off" ] ; then
+	icon_name="notification-audio-volume-off"
+elif [ "$VOLUME" -lt 33 ]; then
+	icon_name="notification-audio-volume-low"
+elif [ "$VOLUME" -lt 67 ]; then
+	icon_name="notification-audio-volume-medium"
+else
+	icon_name="notification-audio-volume-high"
+fi
+
+notify-send "Volume: $VOLUME%" -i "$icon_name" -h "string:synchronous:volume" -h "int:value:$VOLUME" -t 200
+#notify-send "Volume: $VOLUME%" -i "$icon_name" -h "string:x-canonical-private-synchronous:anything" -h "int:value:$VOLUME" 

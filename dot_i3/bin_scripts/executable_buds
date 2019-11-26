@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+/home/vicente/.i3/my_scripts/bluetooth/toggle_buds_connection.sh
+
+exit 0

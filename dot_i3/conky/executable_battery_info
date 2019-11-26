@@ -1,0 +1,21 @@
+#!/bin/bash
+
+STATE=$( upower -i $(upower -e | grep 'BAT') | grep -E "state" | awk '{print $2}' )
+PERCENT=$( upower -i $(upower -e | grep 'BAT') | grep -E "percentage" | awk '{print $2}' )
+PERCENT=${PERCENT::-1} # remove last char (%)
+
+#    
+if [[ $STATE == *"fully"* ]]; then
+    echo "  $PERCENT "
+elif [[ $STATE == "charging" ]]; then
+    echo "  $PERCENT"
+elif [ "$PERCENT" -ge 91 ]; then
+    echo "  $PERCENT"
+elif [ "$PERCENT" -le 90 ] && [ "$PERCENT" -ge 51 ]; then
+    echo "  $PERCENT"
+elif [ "$PERCENT" -le 50 ] && [ "$PERCENT" -ge 26 ]; then
+    echo "  $PERCENT"
+elif [ "$PERCENT" -le 25 ]; then
+    echo "  $PERCENT"
+fi
+

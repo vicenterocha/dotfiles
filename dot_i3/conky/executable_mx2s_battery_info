@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# 
+MOUSE_STATE=$( upower -i $(upower -e | grep 'mouse') | grep -E "state" | awk '{print $2}' )
+
+if [[ ! -z $MOUSE_STATE ]]; then
+    if [[ $MOUSE_STATE == "fully-charged" ]]; then
+        echo "   "
+    elif [[ $MOUSE_STATE == "unknown" ]]; then
+        echo ""
+    elif [[ $MOUSE_STATE == "discharging" ]]; then
+        echo "   "
+    else 
+        echo " $MOUSE_STATE"
+    fi
+fi

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+VPN=$( ip addr | grep tun0 | grep inet | awk '{print $2}' )
+
+if [ ! -z $VPN ]; then
+    VPN=${VPN::-3}
+    printf " $VPN"
+fi
