@@ -2,7 +2,8 @@
 
 VOLUME=$(amixer get 'Master' -M | grep -oE "[[:digit:]]*%" | head -n 1)
 VOLUME=${VOLUME::-1}
-ON=$(bluetoothctl info $BUDS_BL_ADDR | grep Connected | awk '{print $2}')
+BUDS_ON=$(bluetoothctl info $BUDS_BL_ADDR | grep Connected | awk '{print $2}')
+SS60_ON=$(bluetoothctl info $SS60_BL_ADDR | grep Connected | awk '{print $2}')
 echo current volume: $VOLUME
 
 # change equals volume + argument (either +5 or -5)
@@ -29,8 +30,10 @@ fi
 echo change after checking volume: $change
 
 # Detect sync so only its volume is changed (If buds are connected, control buds, else control computer audio)
-if [[ $ON == "yes" ]]; then
+if [[ $BUDS_ON == "yes" ]]; then
 	SYNC=bluez_sink.${BUDS_BL_ADDR//[:]/_}.a2dp_sink
+elif [[ $SS60_ON == "yes" ]]; then
+	SYNC=bluez_sink.${SS60_BL_ADDR//[:]/_}.a2dp_sink
 else
 	SYNC=alsa_output.pci-0000_00_1f.3.analog-stereo
 fi

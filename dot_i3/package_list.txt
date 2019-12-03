@@ -31,6 +31,7 @@ chezmoi
 chntpw
 clipit
 code
+console-solarized
 coreutils
 cpupower
 crda
@@ -69,6 +70,7 @@ ffmpeg
 ffmpegthumbnailer
 file
 filesystem
+filezilla
 findutils
 firefox
 flac
@@ -113,6 +115,7 @@ gvfs-mtp
 gvfs-smb
 gvim
 gzip
+halibut
 haveged
 hexchat
 htop
@@ -150,10 +153,10 @@ licenses
 lightdm-settings
 lightdm-slick-greeter
 linux-firmware
+linux-latest
+linux-latest-virtualbox-host-modules
 linux414
 linux414-virtualbox-host-modules
-linux52
-linux52-virtualbox-host-modules
 logrotate
 lsb-release
 lvm2
@@ -197,6 +200,7 @@ mupdf
 nano
 ncdu
 neovim
+nerd-fonts-complete
 netctl
 network-manager-applet
 networkmanager
@@ -276,6 +280,7 @@ rsync
 rtv
 s-nail
 sbxkb
+scponly
 screenfetch
 sed
 sendmail
@@ -283,6 +288,7 @@ shadow
 skim
 slack-desktop
 slock
+solarized-dark-themes
 spectre-meltdown-checker
 speedtest-cli
 spice-gtk
@@ -309,6 +315,7 @@ tree
 ttf-bitstream-vera
 ttf-dejavu
 ttf-droid
+ttf-font-awesome
 ttf-inconsolata
 ttf-indic-otf
 ttf-liberation

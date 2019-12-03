@@ -95,6 +95,18 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+function cd () {
+    new_directory="$*";
+    if [ $# -eq 0 ]; then
+        new_directory=${HOME};
+    fi;
+    builtin cd "$@" &&  ls -la
+}
+
+function csv () {
+    column -s, -t < $1 | less -#2 -N -S
+}
+
 # system wide
 alias ll="ls -la"
 alias vimbl="vim ~/.i3/conky/find_s10.py"
@@ -112,13 +124,6 @@ alias tts-dev='TF_CONFIG=caspian-dev.cfg caspian-dev ~/Documents/projects/caspia
 alias tts-preprod='TF_CONFIG=caspian-preprod.cfg caspian-preprod ~/Documents/projects/caspian/new_caspian/customer360/bitbucket/data-iac/scripts/terraform_script.sh'
 alias tts-prod='TF_CONFIG=caspian-prod.cfg caspian-prod ~/Documents/projects/caspian/new_caspian/customer360/bitbucket/data-iac/scripts/terraform_script.sh'
 
-function cd () {
-    new_directory="$*";
-    if [ $# -eq 0 ]; then
-        new_directory=${HOME};
-    fi;
-    builtin cd "$@" &&  ls -la
-}
 
 # enable vi mode
 # bindkey -v

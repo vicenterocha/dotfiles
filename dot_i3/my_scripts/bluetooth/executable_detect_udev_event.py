@@ -7,12 +7,16 @@ context = pyudev.Context()
 BUDS_BL_ADDR = os.environ["BUDS_BL_ADDR"]
 BUDS_ADDR = "\"" + BUDS_BL_ADDR + "\""
 
+SS60_BL_ADDR = os.environ["SS60_BL_ADDR"]
+SS60_ADDR = "\"" + SS60_BL_ADDR + "\""
+
 monitor = pyudev.Monitor.from_netlink(context)
 for type, device in monitor:
     try:
         devpath = device.get("DEVPATH")
-        if device.get("NAME") == BUDS_ADDR:
-            print("Buds")
+        device_name = device.get("NAME")
+        if device_name == BUDS_ADDR or device_name == SS60_ADDR:
+            print("Found {}".format(device_name))
             try:
                 if type == 'add':
                     # mute speakers, so sound never leaks from the speakers, due to a small delay until buds are ready
