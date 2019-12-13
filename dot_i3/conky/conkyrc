@@ -20,6 +20,7 @@ conky.text = [[
       ${time %H:%M}     | \
   ${execi 2 ~/.i3/conky/mx2s_battery_info}\
 ${execi 2 ~/.i3/conky/galaxy_buds_connection}\
+${execi 2 ~/.i3/conky/ss60_connection}\
  ${execi 2 ~/.i3/conky/tab60_connection}\
  ${execi 2 ~/.i3/my_scripts/bluetooth/read_bluetooth_status.py}   | \
    ${execi 2 ~/.i3/conky/battery_info}  \
